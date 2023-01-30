@@ -1,4 +1,4 @@
-import { Body, Controller, Post, UseGuards, Get, UseInterceptors, UploadedFile, BadRequestException, UploadedFiles, ParseFilePipe, FileTypeValidator, MaxFileSizeValidator } from "@nestjs/common";
+import { Body, Controller, Post, UseGuards, Get, UseInterceptors, UploadedFile, BadRequestException, UploadedFiles, ParseFilePipe, FileTypeValidator, MaxFileSizeValidator, Patch } from "@nestjs/common";
 import { FileFieldsInterceptor, FileInterceptor, FilesInterceptor } from "@nestjs/platform-express";
 import { User } from "src/decorators/user-decorator";
 import { AuthGuard } from "src/guards/auth.guard";
@@ -32,7 +32,7 @@ export class AuthController {
     return this.authService.forget(email);
   }
 
-  @Post('reset')
+  @Patch('reset')
   async reset(@Body() { password, token }: AuthResetDTO) {
     return this.authService.reset(password, token);
   }

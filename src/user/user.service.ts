@@ -63,8 +63,6 @@ export class UserService {
       data.name = name;
     }
     if (password) {
-      data.password = password;
-
       const salt = await bcrypt.genSalt();
       data.password = await bcrypt.hash(password, salt);
     }
